@@ -1,0 +1,5 @@
+logsout{1}
+
+%function visualizeShip(eta,nu)
+%    figure
+%end
