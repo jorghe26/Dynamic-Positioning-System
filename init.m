@@ -17,3 +17,8 @@ load('thrusters_sup.mat')
 eta0 = [0,0,0,0,0,0]';
 % Initial velocity u, v, w, p, q, r
 nu0 = [0,0,0,0,0,0]';
+% Desired position x,y, psi in NED
+xd_n = 10;
+yd_n = 100;
+psid_n = 0;
+eta_d = [xd_n,yd_n,psid_n];
