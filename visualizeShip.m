@@ -3,7 +3,7 @@ eta_b = logsout{1}.Values.Data();
 
 nu_b = logsout{2}.Values.Data();
 
-eta_n = % We can use MSS function: eta_n = Rzyx(phi, theta, psi)*eta_b
+%eta_n = % We can use MSS function: eta_n = Rzyx(phi, theta, psi)*eta
 
 t = logsout{1}.Values.Time();
 
@@ -12,6 +12,8 @@ x_d = zeros(1,N);
 x_d(1,:) = xd_n; 
 y_d = zeros(1,N);
 y_d(1,:) = yd_n;
+psi_d = zeros(1,N);
+psi_d(1,:) = psid_n;
 
 % plot(eta(:,1),eta(:,2))
 figure(1)
@@ -26,6 +28,14 @@ plot(t,y_d)
 hold on
 plot(t, eta_b(:,2))
 legend('y','y_d')
+xlabel('t [s]')
+ylabel('y^n')
+
+figure(3)
+plot(t,psi_d)
+hold on
+plot(t, nu_b(:,1))
+legend('psi','psi_d')
 xlabel('t [s]')
 ylabel('y^n')
 
