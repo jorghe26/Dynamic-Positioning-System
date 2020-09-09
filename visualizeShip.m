@@ -3,6 +3,9 @@ eta_b = logsout{1}.Values.Data();
 
 nu_b = logsout{2}.Values.Data();
 
+
+
+plot(eta(:,1),eta(:,2))
 %eta_n = % We can use MSS function: eta_n = Rzyx(phi, theta, psi)*eta
 
 t = logsout{1}.Values.Time();
