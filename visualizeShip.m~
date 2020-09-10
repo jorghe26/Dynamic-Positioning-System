@@ -10,7 +10,6 @@ nu_b = logsout{2}.Values.Data();
 
 t = logsout{1}.Values.Time();
 
-%creating vectors of desired position 
 N = length(t);
 x_d = zeros(1,N);
 x_d(1,:) = xd_n; 
@@ -20,26 +19,21 @@ psi_d = zeros(1,N);
 psi_d(1,:) = psid_n;
 
 % plot(eta(:,1),eta(:,2))
-
-%position x
 figure(1)
-plot(t,x_d)
+plot(t,x_d) %desired position x
 hold on
 plot(t, eta_b(:,1)) 
 legend('x','x_d') 
 xlabel('t [s]')
 ylabel('x^n')
-
-%position y
 figure(2)
-plot(t,y_d) %desired position y
+plot(t,y_d)
 hold on
 plot(t, eta_b(:,2))
 legend('y','y_d')
 xlabel('t [s]')
 ylabel('y^n')
 
-%heading
 figure(3)
 plot(t,psi_d)
 hold on
