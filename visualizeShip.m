@@ -1,11 +1,12 @@
-%Assumed that measurements are in BODY, need to check this
-eta_b = logsout{1}.Values.Data();
+
+eta = logsout{1}.Values.Data();
 
 nu_b = logsout{2}.Values.Data();
 
 
+figure(5)
+plot(eta(:,1),eta(:,2))
 
-%plot(eta(:,1),eta(:,2))
 %eta_n = % We can use MSS function: eta_n = Rzyx(phi, theta, psi)*eta
 
 t = logsout{1}.Values.Time();
@@ -25,8 +26,8 @@ psi_d(1,:) = psid_n;
 figure(1)
 plot(t,x_d)
 hold on
-plot(t, eta_b(:,1)) 
-legend('x','x_d') 
+plot(t, eta(:,1))
+legend('x','x_d')
 xlabel('t [s]')
 ylabel('x^n')
 
@@ -34,7 +35,7 @@ ylabel('x^n')
 figure(2)
 plot(t,y_d) %desired position y
 hold on
-plot(t, eta_b(:,2))
+plot(t, eta(:,2))
 legend('y','y_d')
 xlabel('t [s]')
 ylabel('y^n')
@@ -43,7 +44,7 @@ ylabel('y^n')
 figure(3)
 plot(t,psi_d)
 hold on
-plot(t, nu_b(:,1))
+plot(t, eta(:,3))
 legend('psi','psi_d')
 xlabel('t [s]')
 ylabel('y^n')
