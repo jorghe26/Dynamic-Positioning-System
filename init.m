@@ -27,7 +27,14 @@ beta_c_init = -90;
 % Desired position x,y, psi in NED
 xd_n = 10;
 yd_n = 100;
-psid_n = 5;
+psid_n = 0;
 eta_d = [xd_n,yd_n,psid_n];
 
+G = [1E4,0,0;
+     0,1E4,0;
+     0, 0 ,1E4];
+ 
+R_lin = [cos(psid_n),-sin(psid_n),0;
+         sin(psid_n),cos(psid_n),0;
+         0          ,0          ,1];
 

@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MF0 version="1.1" packageUris="http://schema.mathworks.com/mf0/slsa_mm/R2020a">
+  <slsa.mm.MaskTree type="slsa.mm.MaskTree" uuid="e381aad1-8913-4470-bbf8-b717a4d67b2c">
+    <maskedBlocks type="slsa.mm.MaskedBlock" uuid="c2bd4f5e-466e-440b-a8ec-148db5ddffef">
+      <blockPath>part1/Supply Ship/Cross-flow drag and surge resistance</blockPath>
+      <id>part1:17:7</id>
+      <masks type="slsa.mm.Mask" uuid="1d6e8d64-a8bd-45b0-82de-bcbfa4456739">
+        <dialogParameters type="slsa.mm.DialogParameterInfo" uuid="a1743b12-7c77-420b-b784-55fa1e11d0b8">
+          <expression>20</expression>
+          <isTunable>true</isTunable>
+          <name>N</name>
+          <refersToVariables>true</refersToVariables>
+        </dialogParameters>
+        <dialogParameters type="slsa.mm.DialogParameterInfo" uuid="bf22313c-f855-4e0a-998e-bf0b88d378dc">
+          <expression>vessel.main.Lpp</expression>
+          <isTunable>true</isTunable>
+          <name>Lpp</name>
+          <refersToVariables>true</refersToVariables>
+        </dialogParameters>
+        <dialogParameters type="slsa.mm.DialogParameterInfo" uuid="4b2bafbd-80de-43e6-85a0-6025479bc903">
+          <expression>CY_2D</expression>
+          <isTunable>true</isTunable>
+          <name>CD</name>
+          <refersToVariables>true</refersToVariables>
+        </dialogParameters>
+        <dialogParameters type="slsa.mm.DialogParameterInfo" uuid="fd02fbe0-2c7b-4f09-a1a1-bd8460588abb">
+          <expression>CX</expression>
+          <isTunable>true</isTunable>
+          <name>Cx</name>
+          <refersToVariables>true</refersToVariables>
+        </dialogParameters>
+        <dialogParameters type="slsa.mm.DialogParameterInfo" uuid="934517e4-5c1e-4e87-b7bf-8fdb8753b6b2">
+          <expression>Axc</expression>
+          <isTunable>true</isTunable>
+          <name>Ax</name>
+          <refersToVariables>true</refersToVariables>
+        </dialogParameters>
+        <dialogParameters type="slsa.mm.DialogParameterInfo" uuid="5be21980-0f56-4b61-be30-6be6f94a27da">
+          <expression>Ayc</expression>
+          <isTunable>true</isTunable>
+          <name>Ay</name>
+          <refersToVariables>true</refersToVariables>
+        </dialogParameters>
+        <dialogParameters type="slsa.mm.DialogParameterInfo" uuid="ccbf710a-a1bc-4a1f-9b66-da2326ed0a65">
+          <expression>rho</expression>
+          <isTunable>true</isTunable>
+          <name>rho_w</name>
+          <refersToVariables>true</refersToVariables>
+        </dialogParameters>
+        <initializationCode>% ITTC drag
+epsilon = 201; % ensure that log10(Rn)&gt;2.0
+
+Rn_min = 1e6;  % minimum Reynold&apos;s tall
+%Ct_max = 0.075*(1+k)/(log10(Rn_min)-2)^2;
+
+%S = Lpp*(B+2*T);</initializationCode>
+        <skipInitializationCode>true</skipInitializationCode>
+      </masks>
+      <parentId>part1:17</parentId>
+    </maskedBlocks>
+    <maskedBlocks type="slsa.mm.MaskedBlock" uuid="338c64b0-38fa-4393-9df4-2a5f5235af80">
+      <blockPath>part1/Current (North - East)/Band-Limited White Noise1</blockPath>
+      <id>part1:51</id>
+      <masks type="slsa.mm.Mask" uuid="38bbecab-5050-44fa-a90a-0fc424511566">
+        <dialogParameters type="slsa.mm.DialogParameterInfo" uuid="1b4b9ccf-2554-44a3-89ba-267354a78eb6">
+          <expression>0.0005</expression>
+          <isTunable>true</isTunable>
+          <name>Cov</name>
+          <refersToVariables>true</refersToVariables>
+        </dialogParameters>
+        <dialogParameters type="slsa.mm.DialogParameterInfo" uuid="57c85b70-56cb-49c9-8363-0546ee90eb65">
+          <expression>0.1</expression>
+          <name>Ts</name>
+          <refersToVariables>true</refersToVariables>
+        </dialogParameters>
+        <dialogParameters type="slsa.mm.DialogParameterInfo" uuid="a4413848-7ac2-49d9-8f37-edb86dffec86">
+          <expression>[23361]</expression>
+          <name>seed</name>
+          <refersToVariables>true</refersToVariables>
+        </dialogParameters>
+        <dialogParameters type="slsa.mm.DialogParameterInfo" uuid="8e4531b0-1766-421b-9155-894b9581440d">
+          <expression>1</expression>
+          <name>VectorParams1D</name>
+        </dialogParameters>
+        <initializationCode>if any(Cov &lt; 0),
+	error(&apos;The &apos;&apos;Noise power&apos;&apos; must be positive. &apos;),
+end;
+
+r = [-0.4326
+   -1.6656
+    0.1253
+    0.2877
+   -1.1465
+    1.1909
+    1.1892
+   -0.0376
+    0.3273
+    0.1746
+   -0.1867
+    0.7258]&apos;;
+
+r2 = [r(1),r;r,r(12)]; 
+t =[1:13;1:13]; 
+
+if any(Ts==-1), 
+	error(&apos;Sample time (-1) is set to be back-inherited from the block(s) it drives. You should explicitly specify the sample time of the source block. &apos;), 
+end;
+set_param([gcb &apos;/White Noise&apos;],&apos;VectorParams1D&apos;,VectorParams1D);</initializationCode>
+      </masks>
+      <parentId>root</parentId>
+    </maskedBlocks>
+    <maskedBlocks type="slsa.mm.MaskedBlock" uuid="e5a76b66-56e6-41d9-bb88-83367d676578">
+      <blockPath>part1/Current (North - East)/beta_c</blockPath>
+      <id>part1:71</id>
+      <masks type="slsa.mm.Mask" uuid="b5845d39-fac8-41ba-87d9-ac7ac589922b">
+        <dialogParameters type="slsa.mm.DialogParameterInfo" uuid="ff9dd99b-5211-46fe-a3a2-99a41a222bdb">
+          <expression>beta_c_slope</expression>
+          <isTunable>true</isTunable>
+          <name>slope</name>
+          <refersToVariables>true</refersToVariables>
+        </dialogParameters>
+        <dialogParameters type="slsa.mm.DialogParameterInfo" uuid="e5752a58-4a14-412d-91b3-0d4aec698c36">
+          <expression>0</expression>
+          <isTunable>true</isTunable>
+          <name>start</name>
+          <refersToVariables>true</refersToVariables>
+        </dialogParameters>
+        <dialogParameters type="slsa.mm.DialogParameterInfo" uuid="d8d9cbc0-eb42-4df6-bb37-6e3714a25720">
+          <expression>beta_c_init</expression>
+          <isTunable>true</isTunable>
+          <name>InitialOutput</name>
+          <refersToVariables>true</refersToVariables>
+        </dialogParameters>
+        <dialogParameters type="slsa.mm.DialogParameterInfo" uuid="bc3b5169-81fb-4aec-a2a3-f6aa7a43c9b6">
+          <expression>1</expression>
+          <name>VectorParams1D</name>
+        </dialogParameters>
+        <initializationCode>blkName = gcb;
+set_param([blkName &apos;/Constant&apos;], &apos;VectorParams1D&apos;,VectorParams1D);
+set_param([blkName &apos;/Constant1&apos;], &apos;VectorParams1D&apos;,VectorParams1D);
+set_param([blkName &apos;/Step&apos;], &apos;VectorParams1D&apos;,VectorParams1D);</initializationCode>
+        <referencedGlobalVariableInfo type="slsa.mm.VariableInfo" uuid="d5c916da-b372-4dd5-832c-b1eb3e2ffd46">
+          <name>beta_c_slope</name>
+          <workspace>global</workspace>
+        </referencedGlobalVariableInfo>
+        <referencedGlobalVariableInfo type="slsa.mm.VariableInfo" uuid="6028fae4-30f1-4f71-ba30-a8bd3ea4d7ab">
+          <name>beta_c_init</name>
+          <workspace>global</workspace>
+        </referencedGlobalVariableInfo>
+        <skipInitializationCode>true</skipInitializationCode>
+      </masks>
+      <parentId>root</parentId>
+    </maskedBlocks>
+    <maskedBlocks type="slsa.mm.MaskedBlock" uuid="d26abfdb-9c05-4f31-9acc-01de8f64a751">
+      <blockPath>part1/DP Controller/DP controller</blockPath>
+      <id>part1:78</id>
+      <masks type="slsa.mm.Mask" uuid="25a4c8ec-0af0-48aa-a5e0-477740904872">
+        <dialogParameters type="slsa.mm.DialogParameterInfo" uuid="bfa233bf-0cce-4fcd-9feb-d8ec52119251">
+          <expression>diag([1E4 1E4 1E4])</expression>
+          <isTunable>true</isTunable>
+          <name>Kp</name>
+        </dialogParameters>
+        <dialogParameters type="slsa.mm.DialogParameterInfo" uuid="8a376c24-fbe4-46f6-bf91-794a75dc7031">
+          <expression>diag([100 100 100])</expression>
+          <isTunable>true</isTunable>
+          <name>Kd</name>
+        </dialogParameters>
+        <dialogParameters type="slsa.mm.DialogParameterInfo" uuid="88fd17c6-0757-4bda-afec-51ebe3643d77">
+          <expression>diag([100 100 100])</expression>
+          <isTunable>true</isTunable>
+          <name>Ki</name>
+        </dialogParameters>
+        <skipInitializationCode>true</skipInitializationCode>
+      </masks>
+      <parentId>root</parentId>
+    </maskedBlocks>
+    <maskedBlocks type="slsa.mm.MaskedBlock" uuid="ce9d821e-3bd6-4003-afd7-12dd32b4cb3d">
+      <childrenIds>part1:17:7</childrenIds>
+      <childrenIds>part1:51</childrenIds>
+      <childrenIds>part1:71</childrenIds>
+      <childrenIds>part1:78</childrenIds>
+      <id>root</id>
+    </maskedBlocks>
+    <referencedGlobalWorkspaceVariables type="slsa.mm.Variable" uuid="1476e316-a610-43df-bc50-ac6228bbcf4f">
+      <name>beta_c_init</name>
+      <value>AAFJTQAAAAAOAAAAOAAAAAYAAAAIAAAABgAAAAAAAAAFAAAACAAAAAEAAAABAAAAAQAAAAAAAAAJAAAACAAAAAAAAAAAgFbA</value>
+      <workspace>global</workspace>
+    </referencedGlobalWorkspaceVariables>
+    <referencedGlobalWorkspaceVariables type="slsa.mm.Variable" uuid="dfde09da-c2ec-495f-8c28-a2bceaef9dec">
+      <name>beta_c_slope</name>
+      <value>AAFJTQAAAAAOAAAAOAAAAAYAAAAIAAAABgAAAAAAAAAFAAAACAAAAAEAAAABAAAAAQAAAAAAAAAJAAAACAAAAArXo3A9Cre/</value>
+      <workspace>global</workspace>
+    </referencedGlobalWorkspaceVariables>
+  </slsa.mm.MaskTree>
+</MF0>
