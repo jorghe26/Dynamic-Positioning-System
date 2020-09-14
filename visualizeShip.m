@@ -5,7 +5,10 @@ nu_b = logsout{2}.Values.Data();
 
 
 figure(5)
-plot(eta(:,1),eta(:,2))
+plot(eta(:,2), eta(:,1))
+title('Poistion of ship in NED');
+xlabel('East') ;
+ylabel('North');
 %eta_n = % We can use MSS function: eta_n = Rzyx(phi, theta, psi)*eta
 
 t = logsout{1}.Values.Time();
@@ -19,7 +22,7 @@ psi_d = zeros(1,N);
 psi_d(1,:) = psid_n;
 
 % plot(eta(:,1),eta(:,2))
-figure(1)
+figure(6)
 plot(t,x_d)
 hold on
 plot(t, eta(:,1))
