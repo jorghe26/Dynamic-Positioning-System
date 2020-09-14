@@ -23,7 +23,7 @@ psi_d = zeros(1,N);
 psi_d(1,:) = psid_n;
 
 % plot(eta(:,1),eta(:,2))
-figure(1)
+figure(6)
 plot(t,x_d)
 hold on
 plot(t, eta(:,1))
