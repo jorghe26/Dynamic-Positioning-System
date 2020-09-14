@@ -19,6 +19,6 @@ eta0 = [0,0,0,0,0,0]';
 nu0 = [0,0,0,0,0,0]';
 % Desired position x,y, psi in NED
 xd_n = 10;
-yd_n = 100;
-psid_n = 0;
+yd_n = 10;
+psid_n = pi/2;
 eta_d = [xd_n,yd_n,psid_n];
