@@ -6,7 +6,7 @@ nu_b = logsout{2}.Values.Data();
 
 figure(5)
 
-short_eta = eta(1:30:5000,:);
+short_eta = eta(1:30:end,:);
 sin_eta=sin(short_eta(:,3))./sqrt(cos(short_eta(:,3)).^2+sin(short_eta(:,3)).^2);
 cos_eta=cos(short_eta(:,3))./sqrt(cos(short_eta(:,3)).^2+sin(short_eta(:,3)).^2);
 quiver(short_eta(:,2),short_eta(:,1),sin(short_eta(:,3)),cos(short_eta(:,3)))
