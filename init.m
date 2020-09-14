@@ -33,12 +33,9 @@ yd_n = -200;
 psid_n = 0;
 eta_d = [50 30 0; 50 -50 0; 50 -50 pi/4; 0 -50 pi/4; 0 0 0];
 
-G = [1E4,0,0;
-     0,1E4,0;
-     0, 0 ,1E4];
- 
-R_lin = [cos(psid_n),-sin(psid_n),0;
-         sin(psid_n),cos(psid_n),0;
-         0          ,0          ,1];
+Kp = diag([2E5,2E5,8E7]);
+Ki = diag([0.09E3,0.5E3,1.25E5]);
+Kd = diag([2E6,2E6,1.5E9]);
+
 
 gui;
