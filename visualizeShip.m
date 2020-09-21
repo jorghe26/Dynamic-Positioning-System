@@ -5,8 +5,16 @@ nu_b = logsout{2}.Values.Data();
 
 
 figure(5)
+<<<<<<< HEAD
 plot(eta(:,1),eta(:,2))
 
+=======
+
+short_eta = eta(1:30:end,:);
+sin_eta=sin(short_eta(:,3))./sqrt(cos(short_eta(:,3)).^2+sin(short_eta(:,3)).^2);
+cos_eta=cos(short_eta(:,3))./sqrt(cos(short_eta(:,3)).^2+sin(short_eta(:,3)).^2);
+quiver(short_eta(:,2),short_eta(:,1),sin(short_eta(:,3)),cos(short_eta(:,3)))
+>>>>>>> master
 %eta_n = % We can use MSS function: eta_n = Rzyx(phi, theta, psi)*eta
 
 t = logsout{1}.Values.Time();
@@ -21,9 +29,13 @@ psi_d = zeros(1,N);
 psi_d(1,:) = psid_n;
 
 % plot(eta(:,1),eta(:,2))
+<<<<<<< HEAD
 
 %position x
 figure(1)
+=======
+figure(6)
+>>>>>>> master
 plot(t,x_d)
 hold on
 plot(t, eta(:,1))
@@ -45,7 +57,7 @@ figure(3)
 plot(t,psi_d)
 hold on
 plot(t, eta(:,3))
-legend('psi','psi_d')
+legend('psi_d','psi')
 xlabel('t [s]')
 ylabel('y^n')
 
