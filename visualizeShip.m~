@@ -27,8 +27,6 @@ plot(t, eta(:,1))
 legend('x','x_d')
 xlabel('t [s]')
 ylabel('x^n')
-hold off
-
 figure(2)
 plot(t,y_d)
 hold on
@@ -36,7 +34,6 @@ plot(t, eta(:,2))
 legend('y','y_d')
 xlabel('t [s]')
 ylabel('y^n')
-hold off
 
 figure(3)
 plot(t,psi_d)
@@ -44,6 +41,7 @@ hold on
 plot(t, eta(:,3))
 legend('\psi_d','\psi')
 xlabel('t [s]')
-ylabel('[rad]')
+ylabel('\psi []')
+
 hold off
 
