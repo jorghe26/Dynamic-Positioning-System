@@ -24,8 +24,8 @@ V_c = 0.5;
 % beta_c_init = 0 when current is initially moving against north
 % beta_c_slope is positive right when looking at north, meaning 
 % N -> E -> S -> W
-beta_c_slope = 90/1000;
-beta_c_init = 30;
+beta_c_slope = 0/1000;
+beta_c_init = pi;
 
 % Desired position x,y, psi in NED
 xd_n = 100;

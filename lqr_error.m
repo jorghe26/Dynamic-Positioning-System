@@ -62,4 +62,4 @@
     Ki3 = Ki(1:3,7:9);
     F = inv(C*inv(B*K-A)*B);
     sim('part1',1000);
-    run(visualizeShip);
+    %run(visualizeShip);
