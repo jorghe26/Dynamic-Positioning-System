@@ -1,9 +1,9 @@
 
-eta = logsout{3}.Values.Data();
+eta = get(logsout,'eta').Values.Data();
 
-nu_b = logsout{4}.Values.Data();
+nu_b = get(logsout,"nu").Values.Data();
 
-eta_d = logsout{2}.Values.Data();
+eta_d = get(logsout,"eta_d").Values.Data();
 
 figure(5)
 
