@@ -5,7 +5,7 @@ nu = get(logsout,"nu").Values.Data();
 
 eta_d = get(logsout,"eta_d").Values.Data();
 
-tau_b = logsout{2}.Values.Data();
+tau_b = get(logsout,"tau").Values.Data();
 
 current = get(logsout,"current").Values.Data();
 
